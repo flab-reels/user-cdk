@@ -189,7 +189,7 @@ export class UserPipelineStack extends cdk.Stack {
                             templatePath: cdkCodeBuildOutput.atPath('UserEcsStackDeployedInPipeline.template.json'),
                             adminPermissions: true,
                             parameterOverrides: {
-                                // read the tag pushed to the ECR repository from the CodePipeline Variable saved by the application build step,
+                                // read the tag pushed to the ECR repository from the CodyePipeline Variable saved by the application build step,
                                 // and pass it as the CloudFormation Parameter for the tag
                                 [this.tagParameterContainerImage.tagParameterName]: appCodeBuildAction.variable('imageTag'),
                             },
@@ -328,9 +328,6 @@ export class UserEcsAppStack extends cdk.Stack {
 
         const listener = loadBalancer.addListener('user-listener',{
             port:80,
-            protocol:Protocol.TCP
-
-
         })
         listener.addTargets('user-target',{
             port:80,
