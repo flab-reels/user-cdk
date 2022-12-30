@@ -183,10 +183,10 @@ export class UserPipelineStack extends cdk.Stack {
                     stageName: 'Deploy',
                     actions: [
                         new codepipeline_actions.CloudFormationCreateUpdateStackAction({
-                            actionName: 'user_CloudFormation_CodeDeploy',
-                            stackName: 'userEcsStackDeployedInPipeline',
+                            actionName: 'User_CloudFormation_CodeDeploy',
+                            stackName: 'UserEcsStackDeployedInPipeline',
                             // this name has to be the same name as used below in the CDK code for the application Stack
-                            templatePath: cdkCodeBuildOutput.atPath('userEcsStackDeployedInPipeline.template.json'),
+                            templatePath: cdkCodeBuildOutput.atPath('UserEcsStackDeployedInPipeline.template.json'),
                             adminPermissions: true,
                             parameterOverrides: {
                                 // read the tag pushed to the ECR repository from the CodePipeline Variable saved by the application build step,
