@@ -9,6 +9,6 @@ new UserDynamoDBStack(app, 'UserDynamoDBStack');
 
 const userPipelineStack = new UserPipelineStack(app, 'UserPipelineStack')
 
-new UserEcsAppStack(app,'AuthEcsStackDeployedInPipeline',{
+new UserEcsAppStack(app,'UserEcsStackDeployedInPipeline',{
     image: userPipelineStack.tagParameterContainerImage,
 })
