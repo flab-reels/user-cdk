@@ -339,6 +339,7 @@ export class UserEcsAppStack extends cdk.Stack {
                 protocol: elbv2.Protocol.HTTP,
                 interval:cdk.Duration.seconds(60),
                 path: "/actuator/health",
+                port:"8080"
             }
 
         })
