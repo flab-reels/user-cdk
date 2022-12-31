@@ -335,10 +335,10 @@ export class UserEcsAppStack extends cdk.Stack {
             port:80,
             targets:[service],
             // protocol:elbv2.Protocol.TLS,
-            healthCheck:{
-                // protocol: elbv2.Protocol.TLS,
-                path: "/actuator/health",
-            }
+            // healthCheck:{
+            //     // protocol: elbv2.Protocol.TLS,
+            //     path: "/actuator/health",
+            // }
 
         })
 
