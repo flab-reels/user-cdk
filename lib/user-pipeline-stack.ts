@@ -335,7 +335,6 @@ export class UserEcsAppStack extends cdk.Stack {
             port:80,
             targets:[service],
             healthCheck:{
-                interval:cdk.Duration.seconds(60),
                 path: "/actuator/health",
                 port:"8080"
             }
