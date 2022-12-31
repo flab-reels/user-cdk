@@ -282,8 +282,8 @@ export class UserEcsAppStack extends cdk.Stack {
             secrets : {
                 'awsAccessKey' : ecs.Secret.fromSecretsManager(
                     new secretsmanager.Secret(this,'user-dynamodb-access',{
-                    secretStringValue:SecretValue.secretsManager('AwsAccessKey')
-                })
+                        secretStringValue:SecretValue.secretsManager('AwsAccessKey')
+                    })
                 ),
                 'awsSecretKey' : ecs.Secret.fromSecretsManager(
                     new secretsmanager.Secret(this,'user-dynamodb-secret',{
@@ -332,8 +332,9 @@ export class UserEcsAppStack extends cdk.Stack {
         listener.addTargets('user-target',{
             port:80,
             targets:[service],
+            protocol:elbv2.Protocol.TLS,
             healthCheck:{
-                protocol:elbv2.Protocol.HTTPS,
+                protocol: elbv2.Protocol.HTTPS,
                 path: "/actuator/health"
             }
         })
