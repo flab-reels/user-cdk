@@ -1,5 +1,5 @@
 import * as cdk from 'aws-cdk-lib';
-import {aws_ecs_patterns, SecretValue} from 'aws-cdk-lib';
+import {SecretValue} from 'aws-cdk-lib';
 import {Construct} from 'constructs';
 import * as codepipeline from 'aws-cdk-lib/aws-codepipeline'
 import * as codepipeline_actions from 'aws-cdk-lib/aws-codepipeline-actions'
@@ -335,7 +335,7 @@ export class UserEcsAppStack extends cdk.Stack {
             port:80,
             targets:[service],
             healthCheck:{
-                path: "/",
+                protocol:Protocol.TCP,
                 port:"8080"
             }
 
