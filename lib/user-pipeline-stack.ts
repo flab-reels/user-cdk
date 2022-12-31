@@ -335,7 +335,7 @@ export class UserEcsAppStack extends cdk.Stack {
             port:80,
             targets:[service],
             healthCheck:{
-                path: "/actuator/health",
+                // path: "/actuator/health",
                 port:"8080"
             }
 
