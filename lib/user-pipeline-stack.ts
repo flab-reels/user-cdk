@@ -1,5 +1,5 @@
 import * as cdk from 'aws-cdk-lib';
-import {SecretValue} from 'aws-cdk-lib';
+import {aws_ecs_patterns, SecretValue} from 'aws-cdk-lib';
 import {Construct} from 'constructs';
 import * as codepipeline from 'aws-cdk-lib/aws-codepipeline'
 import * as codepipeline_actions from 'aws-cdk-lib/aws-codepipeline-actions'
@@ -310,6 +310,8 @@ export class UserEcsAppStack extends cdk.Stack {
         secGroup.addIngressRule(ec2.Peer.ipv4('0.0.0.0/0'), ec2.Port.tcp(80), 'SSH frm anywhere');
         secGroup.addIngressRule(ec2.Peer.ipv4('0.0.0.0/0'), ec2.Port.tcp(8080), '');
         // secGroup.addIngressRule(secGroup, ec2.Port.allTraffic))
+
+
         const service = new ecs.FargateService(this, 'Service', {
             cluster,
             taskDefinition: fargateTaskDefinition,
@@ -332,11 +334,12 @@ export class UserEcsAppStack extends cdk.Stack {
         listener.addTargets('user-target',{
             port:80,
             targets:[service],
-            protocol:elbv2.Protocol.TLS,
+            // protocol:elbv2.Protocol.TLS,
             healthCheck:{
-                protocol: elbv2.Protocol.TLS,
-                path: "/actuator/health"
+                // protocol: elbv2.Protocol.TLS,
+                path: "/actuator/health",
             }
+
         })
 
         new cdk.CfnOutput(this, "user-VPC-id",{value: vpc.vpcId})
