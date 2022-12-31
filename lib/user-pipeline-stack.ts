@@ -334,9 +334,9 @@ export class UserEcsAppStack extends cdk.Stack {
         listener.addTargets('user-target',{
             port:80,
             targets:[service],
-            // protocol:elbv2.Protocol.TLS,
+            protocol:elbv2.Protocol.HTTP,
             healthCheck:{
-                protocol: elbv2.Protocol.TCP,
+                protocol: elbv2.Protocol.HTTP,
                 interval:cdk.Duration.seconds(60),
                 path: "/actuator/health",
             }
