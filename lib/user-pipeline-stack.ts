@@ -337,6 +337,8 @@ export class UserEcsAppStack extends cdk.Stack {
             }
         })
 
+        new cdk.CfnOutput(this, "user-VPC-id",{value: vpc.vpcId})
+        new cdk.CfnOutput(this,"user-nlb-arn",{value: loadBalancer.loadBalancerArn})
 
     }
 }
