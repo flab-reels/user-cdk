@@ -249,7 +249,8 @@ export class UserEcsAppStack extends cdk.Stack {
         const vpc = new ec2.Vpc(this, "user-vpc", {
             vpcName:"user-vpc",
             maxAzs: 3, // Default is all AZs in region
-            natGateways:1
+            natGateways:1,
+
         });
 
 
@@ -306,7 +307,6 @@ export class UserEcsAppStack extends cdk.Stack {
             securityGroupName: "user-sg",
             vpc:vpc,
         });
-
         secGroup.addIngressRule(ec2.Peer.ipv4('0.0.0.0/0'), ec2.Port.tcp(80), 'SSH frm anywhere');
         secGroup.addIngressRule(ec2.Peer.ipv4('0.0.0.0/0'), ec2.Port.tcp(8080), '');
         // secGroup.addIngressRule(secGroup, ec2.Port.allTraffic))
@@ -323,7 +323,7 @@ export class UserEcsAppStack extends cdk.Stack {
 
         const loadBalancer = new elbv2.NetworkLoadBalancer(this, 'user-alb',{
             vpc,
-            internetFacing:true,
+            internetFacing:false,
             // idleTimeout:Duration.seconds(300),
 
         })
